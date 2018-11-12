@@ -22,35 +22,33 @@ $(document).ready(function(){
   var listOfItems = [];
   var totalPrice = 0;
 
+  $(".item").on("click", "button", function(event){
   //Item Button - Add
-  $("#item button#itemBtn").click(function(event) {
-    var item = $(event.target).html();
+    //console.log(event.target);
+    var item = $(event.target); //button
+    //console.log(item.html()); //Text of button
     item = $(event.target).html("Undo");
-    //Change color
-    //Option 1
-    //item = $(event.target).css("background-color", "red");
-    //item = $(event.target).css("border", "red");
-    //Option 2
     item = $(event.target).removeClass("btn-primary");
     item = $(event.target).addClass("btn-danger");
 
-    //Item Name
-    var itemName = $(".itemName").html();
+  //Item Name
+    var itemName = $(event.target).parent().next().children(".itemName").html();
     console.log(itemName);
-    //listOfItems.push(itemName);
-    //console.log(listOfItems);
+    //Pushes item thats clicked into listOfItems array
+    listOfItems.push(itemName);
+    console.log(listOfItems);
 
-    //Item Price
-    var itemPrice = $(".itemPrice").html();
+  //Item Price
+    var itemPrice = $(event.target).parent().next().children().find("span.itemPrice").html();
     itemPrice = parseFloat(itemPrice);
     console.log(itemPrice);
     totalPrice = totalPrice + itemPrice;
-    console.log(totalPrice);
 
     var totalAmount = $("span#totalAmount");
     parseFloat(totalAmount);
-    console.log(totalAmount);
     totalAmount = totalAmount.html(totalPrice);
+
+
 
   });
 
