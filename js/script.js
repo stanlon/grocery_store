@@ -1,12 +1,13 @@
 /*Objective: Grocery Store Website
 
-Using checkboxes, create a website for a grocery store where the user can pick from different items. The checkbox should show the name of the item, the price and a picture of the item.
+Create a website for a grocery store where the user can pick from different items. The user will clcik a button from a box which should show the name of the item, the price and a picture of the item.
 
-Each time the user checks a check box for an item, the total price should go up. Display the total price somewhere on the page.
+Each time the user clicks "Add" on an item, the total price should go up. Display the total price on a fixed bar on the left of the page.
 
-Each time the user unchecks an item, the total price should go down. Have the total price start off at $0.00.
+User has option to click and "Undo" an item which will subtract that item from the total price/amount. Have the total price start off at $0.00.
 
-Create a checkout page, showing the user all of the items they are purchasing and how much their total price is.
+NEXT:
+Once user hits finish, send the user to a checkout page, showing the user all of the items they are purchasing and how much their total price is.
 
 */
 
