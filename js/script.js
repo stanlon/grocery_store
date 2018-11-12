@@ -20,36 +20,77 @@ item = $(event.target).html("Undo");
 
 $(document).ready(function(){
   var listOfItems = [];
-  var totalPrice = 0;
+  var totalPrice = 0.00;
 
   $(".item").on("click", "button", function(event){
-  //Item Button - Add
-    //console.log(event.target);
-    var item = $(event.target); //button
-    //console.log(item.html()); //Text of button
-    item = $(event.target).html("Undo");
-    item = $(event.target).removeClass("btn-primary");
-    item = $(event.target).addClass("btn-danger");
+    var item = $(event.target);         //Button Being Clicked
+    var itemBtnText = item.html();      //Button Text
+    var itemName = $(event.target).parent().next().children(".itemName").html();  //Item Name
+    //console.log(itemName);
+    var itemPrice = $(event.target).parent().next().children().find("span.itemPrice").html(); //Item Price
+    itemPrice = parseFloat(itemPrice);  //Item Price Turned into a number from a string.
+    var totalAmount = $("span#totalAmount");  //Total Amount on priceBar
 
-  //Item Name
-    var itemName = $(event.target).parent().next().children(".itemName").html();
-    console.log(itemName);
-    //Pushes item thats clicked into listOfItems array
-    listOfItems.push(itemName);
+    /* Conditional
+    The conditional is going to be based off of whether the Buttons Text says "Add" or "Undo"
+    meaning if the Buttons Text says "Add" then
+      1. Change the Buttons Text to "Undo"
+      2. Change the Buttons Color to red by removing class "btn-primary" and adding class "btn-danger".
+      3. Push the Items Name into the "listOfItems" array.
+      4. Add Items Price to the Total Price
+      5. Display that new total price on the price bar.
+
+    Else - Do the opposite for numbers 1-5 above.
+    */
+
+    if( itemBtnText === "Add" ) {
+      //Item Button
+        item = $(event.target).html("Undo");
+        item = $(event.target).removeClass("btn-primary");
+        item = $(event.target).addClass("btn-danger");
+
+      //Item Name
+        //Pushes item thats clicked into listOfItems array
+        listOfItems.push(itemName);
+
+      //Item Price
+        console.log(itemPrice);
+        totalPrice = totalPrice + itemPrice;
+        //totalPrice = parseFloat(totalPrice + itemPrice).toFixed(2);
+        //totalPrice = parseFloat(totalPrice).toFixed(2);
+        totalPrice = Number(totalPrice.toFixed(2));
+        console.log(totalPrice);
+        console.log(typeof totalPrice);
+        totalAmount = totalAmount.html(totalPrice);
+
+    }  else {
+      //Item Button
+        item = $(event.target).html("Add");
+        item = $(event.target).removeClass("btn-danger");
+        item = $(event.target).addClass("btn-primary");
+
+      //Item Name
+        //Pulls last item thats clicked into listOfItems array.
+        listOfItems.pop(itemName);
+        /*Problem:
+            Going to have to think more complex about this meaning what if they click undo out of order.
+          Example:
+            User clicks add Apples then add Bananas but goes back to Apples and clicks undo?
+            Problem: It would take Bananas off the list instead of Apples.
+        */
+
+      //Item Price
+        //Subtracts items price from total amount.
+        console.log(itemPrice);
+        totalPrice = totalPrice - itemPrice;
+        //totalPrice = parseFloat(totalPrice - itemPrice).toFixed(2);
+        //totalPrice = parseFloat(totalPrice).toFixed(2);
+        totalPrice = Number(totalPrice.toFixed(2));
+        console.log(totalPrice);
+        console.log(typeof totalPrice);
+        totalAmount = totalAmount.html(totalPrice);
+    }
     console.log(listOfItems);
-
-  //Item Price
-    var itemPrice = $(event.target).parent().next().children().find("span.itemPrice").html();
-    itemPrice = parseFloat(itemPrice);
-    console.log(itemPrice);
-    totalPrice = totalPrice + itemPrice;
-
-    var totalAmount = $("span#totalAmount");
-    parseFloat(totalAmount);
-    totalAmount = totalAmount.html(totalPrice);
-
-
-
   });
 
 });
