@@ -9,7 +9,7 @@ Landing Page
 *************************/
 #wrapper {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
 }
 
 #landing.container,
@@ -71,6 +71,21 @@ Landing Page
   margin-top: 45px;
   padding-left: 60px;
   padding-right: 60px;
+}
+
+/*************************
+Member Login Page
+*************************/
+.backBtn {
+  width: 80px;
+  position: fixed;
+  border-radius: 0 10px 10px 0;
+  top: 15px;
+}
+
+.backBtn button, .backBtn a {
+  width: 100%;
+  background-color: inherit;
 }
 
 /*************************
