@@ -8,14 +8,6 @@ Each time the user unchecks an item, the total price should go down. Have the to
 
 Create a checkout page, showing the user all of the items they are purchasing and how much their total price is.
 
-
-var item = event.type;   //Shows Type of Event; click, hover, etc.
-console.log(item);
-var item = event.target;  //Show what html element is being targeted; button, p, etc.
-console.log(item);
-var item = $(event.target).html();  //Shows content inside existing html element in index.html file.
-console.log(item);
-item = $(event.target).html("Undo");
 */
 
 $(document).ready(function(){
@@ -52,15 +44,15 @@ $(document).ready(function(){
       //Item Name
         //Pushes item thats clicked into listOfItems array
         listOfItems.push(itemName);
+        console.log(itemName);
+        console.log(listOfItems);
 
       //Item Price
-        console.log(itemPrice);
+        //console.log(itemPrice);
         totalPrice = totalPrice + itemPrice;
-        //totalPrice = parseFloat(totalPrice + itemPrice).toFixed(2);
-        //totalPrice = parseFloat(totalPrice).toFixed(2);
         totalPrice = Number(totalPrice.toFixed(2));
-        console.log(totalPrice);
-        console.log(typeof totalPrice);
+        //console.log(totalPrice);
+        //console.log(typeof totalPrice);
         totalAmount = totalAmount.html(totalPrice);
 
     }  else {
@@ -70,27 +62,23 @@ $(document).ready(function(){
         item = $(event.target).addClass("btn-primary");
 
       //Item Name
-        //Pulls last item thats clicked into listOfItems array.
-        listOfItems.pop(itemName);
-        /*Problem:
-            Going to have to think more complex about this meaning what if they click undo out of order.
-          Example:
-            User clicks add Apples then add Bananas but goes back to Apples and clicks undo?
-            Problem: It would take Bananas off the list instead of Apples.
-        */
+        //Whichever item user decides to click "Undo" will pull that item from the Grocery list or in this case the listOfItems array.
+        //console.log(itemName);
+        var i = listOfItems.indexOf(itemName); //return items position as a #
+        //console.log(i);
+        listOfItems.splice(i, 1); //Searches listOfItems array for that position and deletes it.
+        console.log(listOfItems);
+
 
       //Item Price
         //Subtracts items price from total amount.
-        console.log(itemPrice);
+        //console.log(itemPrice);
         totalPrice = totalPrice - itemPrice;
-        //totalPrice = parseFloat(totalPrice - itemPrice).toFixed(2);
-        //totalPrice = parseFloat(totalPrice).toFixed(2);
         totalPrice = Number(totalPrice.toFixed(2));
-        console.log(totalPrice);
-        console.log(typeof totalPrice);
+        //console.log(totalPrice);
+        //console.log(typeof totalPrice);
         totalAmount = totalAmount.html(totalPrice);
     }
-    console.log(listOfItems);
   });
 
 });
