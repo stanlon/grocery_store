@@ -14,6 +14,7 @@ Once user hits finish, send the user to a checkout page, showing the user all of
 $(document).ready(function(){
   var listOfItems = [];
   var totalPrice = 0.00;
+  var groceryList = $("ul#groceryList");
 
   $(".item").on("click", "button", function(event){
     var item = $(event.target);         //Button Being Clicked
@@ -45,8 +46,8 @@ $(document).ready(function(){
       //Item Name
         //Pushes item thats clicked into listOfItems array
         listOfItems.push(itemName);
-        console.log(itemName);
-        console.log(listOfItems);
+        //console.log(itemName);
+        //console.log(listOfItems);
 
       //Item Price
         //console.log(itemPrice);
@@ -68,8 +69,7 @@ $(document).ready(function(){
         var i = listOfItems.indexOf(itemName); //return items position as a #
         //console.log(i);
         listOfItems.splice(i, 1); //Searches listOfItems array for that position and deletes it.
-        console.log(listOfItems);
-
+        //console.log(listOfItems);
 
       //Item Price
         //Subtracts items price from total amount.
@@ -80,6 +80,28 @@ $(document).ready(function(){
         //console.log(typeof totalPrice);
         totalAmount = totalAmount.html(totalPrice);
     }
+    console.log(listOfItems);
   });
+
+  //Show Grocery Items in Modal When Finished Button is clicked.
+  /*
+  $("#priceBar button").click(function(event){
+      listOfItems.forEach(function(groceryItem) {
+        groceryList.append("<li>" + groceryItem + "</li>");
+      });
+    });
+  */
+
+  $("#priceBar button").click(function(event){
+    if(groceryList.html() !== groceryList.html("")) {
+      groceryList = groceryList.html("");
+      console.log(groceryList);
+      listOfItems.forEach(function(groceryItem) {
+        groceryList.append("<li>" + groceryItem + "</li>");
+      });
+      console.log(groceryList);
+    }
+  });
+
 
 });
