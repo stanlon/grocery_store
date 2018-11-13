@@ -84,14 +84,6 @@ $(document).ready(function(){
   });
 
   //Show Grocery Items in Modal When Finished Button is clicked.
-  /*
-  $("#priceBar button").click(function(event){
-      listOfItems.forEach(function(groceryItem) {
-        groceryList.append("<li>" + groceryItem + "</li>");
-      });
-    });
-  */
-
   $("#priceBar button").click(function(event){
     if(groceryList.html() !== groceryList.html("")) {
       groceryList = groceryList.html("");
@@ -102,6 +94,5 @@ $(document).ready(function(){
       console.log(groceryList);
     }
   });
-
-
+  
 });
